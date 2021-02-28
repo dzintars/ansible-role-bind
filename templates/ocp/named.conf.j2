@@ -25,7 +25,7 @@ options {
   include "/etc/crypto-policies/back-ends/bind.config";
 
   /* forward only; */
-	/* forwarders { {{ dns.forwarder1 | default("9.9.9.9") }}; {{ dns.forwarder2 | default("8.8.8.8") }}; }; */
+  /* forwarders { {{ dns.forwarder1 | default("9.9.9.9") }}; {{ dns.forwarder2 | default("8.8.8.8") }}; }; */
   forwarders { 1.1.1.1; 8.8.8.8; };
 };
 
@@ -44,9 +44,9 @@ zone "." IN {
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 
-zone "{{ cluster_name }}.{{ fqdn }}" IN {
+zone "{{ cluster_name }}.{{ root_domain }}" IN {
   type master;
-  file "{{ cluster_name }}.{{ fqdn }}.zone";
+  file "{{ cluster_name }}.{{ root_domain }}.zone";
   allow-query { any; };
   allow-transfer { none; };
   allow-update { none; };

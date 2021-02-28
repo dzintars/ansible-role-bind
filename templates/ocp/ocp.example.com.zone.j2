@@ -1,13 +1,13 @@
 $TTL 900
 
-@           IN  SOA bastion.{{ cluster_name }}.{{ fqdn }}.    hostmaster.{{ cluster_name }}.{{ fqdn }}. (
-            2019062002      ; serial
-            3H              ; refresh (3 hours)
-            30M             ; retry (30 minutes)
-            1W              ; expiry (1 week)
-            3H )            ; minimum (3 hours)
+@           IN  SOA bastion.{{ cluster_name }}.{{ root_domain }}.    hostmaster.{{ cluster_name }}.{{ root_domain }}. (
+            2019062002      ; serial number
+            3H              ; refresh interval (3 hours)
+            30M             ; retry interval (30 minutes)
+            1W              ; expiry period (1 week)
+            3H )            ; negative TTL (3 hours)
 
-            IN  NS  bastion.{{ cluster_name }}.{{ fqdn }}.
+            IN  NS  bastion.{{ cluster_name }}.{{ root_domain }}.
 bastion     IN  A   {{ network }}.254
 bootstrap-0 IN  A   {{ network }}.253
 master-0    IN  A   {{ network }}.10
@@ -25,7 +25,7 @@ apps        IN  A   {{ network }}.254
 etcd-0      IN  A   {{ network }}.10
 etcd-1      IN  A   {{ network }}.11
 etcd-2      IN  A   {{ network }}.12
-_etcd-server-ssl._tcp   IN  SRV 0   10  2380    etcd-0.{{ cluster_name }}.{{ fqdn }}.
-                        IN  SRV 0   10  2380    etcd-1.{{ cluster_name }}.{{ fqdn }}.
-                        IN  SRV 0   10  2380    etcd-2.{{ cluster_name }}.{{ fqdn }}.
+_etcd-server-ssl._tcp   IN  SRV 0   10  2380    etcd-0.{{ cluster_name }}.{{ root_domain }}.
+                        IN  SRV 0   10  2380    etcd-1.{{ cluster_name }}.{{ root_domain }}.
+                        IN  SRV 0   10  2380    etcd-2.{{ cluster_name }}.{{ root_domain }}.
 ;EOF
