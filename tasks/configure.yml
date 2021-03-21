@@ -1,5 +1,5 @@
 ---
-# tasks file for roles/named
+# tasks file for bind
 
 - name: copy named.conf and zone files
   template:
